@@ -13,7 +13,7 @@ var t = easeOutCubic(0.5f);
 var lerpedValue = Godot.Mathf.Lerp(init,end,t);
 ```
 
-## Author
+## Original Author
 [setchi](https://github.com/setchi)
 
 ## Godot Port
