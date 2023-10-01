@@ -4,8 +4,6 @@
  * Licensed under MIT (https://github.com/setchi/EasingCore/blob/master/LICENSE)
  */
 
-using UnityEngine;
-
 namespace EasingCore
 {
     public enum Ease
@@ -56,54 +54,54 @@ namespace EasingCore
         {
             switch (type)
             {
-                case Ease.Linear: return linear;
-                case Ease.InBack: return inBack;
-                case Ease.InBounce: return inBounce;
-                case Ease.InCirc: return inCirc;
-                case Ease.InCubic: return inCubic;
-                case Ease.InElastic: return inElastic;
-                case Ease.InExpo: return inExpo;
-                case Ease.InQuad: return inQuad;
-                case Ease.InQuart: return inQuart;
-                case Ease.InQuint: return inQuint;
-                case Ease.InSine: return inSine;
-                case Ease.OutBack: return outBack;
-                case Ease.OutBounce: return outBounce;
-                case Ease.OutCirc: return outCirc;
-                case Ease.OutCubic: return outCubic;
-                case Ease.OutElastic: return outElastic;
-                case Ease.OutExpo: return outExpo;
-                case Ease.OutQuad: return outQuad;
-                case Ease.OutQuart: return outQuart;
-                case Ease.OutQuint: return outQuint;
-                case Ease.OutSine: return outSine;
-                case Ease.InOutBack: return inOutBack;
-                case Ease.InOutBounce: return inOutBounce;
-                case Ease.InOutCirc: return inOutCirc;
-                case Ease.InOutCubic: return inOutCubic;
-                case Ease.InOutElastic: return inOutElastic;
-                case Ease.InOutExpo: return inOutExpo;
-                case Ease.InOutQuad: return inOutQuad;
-                case Ease.InOutQuart: return inOutQuart;
-                case Ease.InOutQuint: return inOutQuint;
-                case Ease.InOutSine: return inOutSine;
-                default: return linear;
+                case Ease.Linear: return Linear;
+                case Ease.InBack: return InBack;
+                case Ease.InBounce: return InBounce;
+                case Ease.InCirc: return InCirc;
+                case Ease.InCubic: return InCubic;
+                case Ease.InElastic: return InElastic;
+                case Ease.InExpo: return InExpo;
+                case Ease.InQuad: return InQuad;
+                case Ease.InQuart: return InQuart;
+                case Ease.InQuint: return InQuint;
+                case Ease.InSine: return InSine;
+                case Ease.OutBack: return OutBack;
+                case Ease.OutBounce: return OutBounce;
+                case Ease.OutCirc: return OutCirc;
+                case Ease.OutCubic: return OutCubic;
+                case Ease.OutElastic: return OutElastic;
+                case Ease.OutExpo: return OutExpo;
+                case Ease.OutQuad: return OutQuad;
+                case Ease.OutQuart: return OutQuart;
+                case Ease.OutQuint: return OutQuint;
+                case Ease.OutSine: return OutSine;
+                case Ease.InOutBack: return InOutBack;
+                case Ease.InOutBounce: return InOutBounce;
+                case Ease.InOutCirc: return InOutCirc;
+                case Ease.InOutCubic: return InOutCubic;
+                case Ease.InOutElastic: return InOutElastic;
+                case Ease.InOutExpo: return InOutExpo;
+                case Ease.InOutQuad: return InOutQuad;
+                case Ease.InOutQuart: return InOutQuart;
+                case Ease.InOutQuint: return InOutQuint;
+                case Ease.InOutSine: return InOutSine;
+                default: return Linear;
             }
 
-            float linear(float t) => t;
+            float Linear(float t) => t;
 
-            float inBack(float t) => t * t * t - t * Mathf.Sin(t * Mathf.PI);
+            float InBack(float t) => t * t * t - t * Godot.Mathf.Sin(t * Godot.Mathf.Pi);
 
-            float outBack(float t) => 1f - inBack(1f - t);
+            float OutBack(float t) => 1f - InBack(1f - t);
 
-            float inOutBack(float t) =>
+            float InOutBack(float t) =>
                 t < 0.5f
-                    ? 0.5f * inBack(2f * t)
-                    : 0.5f * outBack(2f * t - 1f) + 0.5f;
+                    ? 0.5f * InBack(2f * t)
+                    : 0.5f * OutBack(2f * t - 1f) + 0.5f;
 
-            float inBounce(float t) => 1f - outBounce(1f - t);
+            float InBounce(float t) => 1f - OutBounce(1f - t);
 
-            float outBounce(float t) =>
+            float OutBounce(float t) =>
                 t < 4f / 11.0f ?
                     (121f * t * t) / 16.0f :
                 t < 8f / 11.0f ?
@@ -112,85 +110,85 @@ namespace EasingCore
                     (4356f / 361.0f * t * t) - (35442f / 1805.0f * t) + 16061f / 1805.0f :
                     (54f / 5.0f * t * t) - (513f / 25.0f * t) + 268f / 25.0f;
 
-            float inOutBounce(float t) =>
+            float InOutBounce(float t) =>
                 t < 0.5f
-                    ? 0.5f * inBounce(2f * t)
-                    : 0.5f * outBounce(2f * t - 1f) + 0.5f;
+                    ? 0.5f * InBounce(2f * t)
+                    : 0.5f * OutBounce(2f * t - 1f) + 0.5f;
 
-            float inCirc(float t) => 1f - Mathf.Sqrt(1f - (t * t));
+            float InCirc(float t) => 1f - Godot.Mathf.Sqrt(1f - (t * t));
 
-            float outCirc(float t) => Mathf.Sqrt((2f - t) * t);
+            float OutCirc(float t) => Godot.Mathf.Sqrt((2f - t) * t);
 
-            float inOutCirc(float t) =>
+            float InOutCirc(float t) =>
                 t < 0.5f
-                    ? 0.5f * (1 - Mathf.Sqrt(1f - 4f * (t * t)))
-                    : 0.5f * (Mathf.Sqrt(-((2f * t) - 3f) * ((2f * t) - 1f)) + 1f);
+                    ? 0.5f * (1 - Godot.Mathf.Sqrt(1f - 4f * (t * t)))
+                    : 0.5f * (Godot.Mathf.Sqrt(-((2f * t) - 3f) * ((2f * t) - 1f)) + 1f);
 
-            float inCubic(float t) => t * t * t;
+            float InCubic(float t) => t * t * t;
 
-            float outCubic(float t) => inCubic(t - 1f) + 1f;
+            float OutCubic(float t) => InCubic(t - 1f) + 1f;
 
-            float inOutCubic(float t) =>
+            float InOutCubic(float t) =>
                 t < 0.5f
                     ? 4f * t * t * t
-                    : 0.5f * inCubic(2f * t - 2f) + 1f;
+                    : 0.5f * InCubic(2f * t - 2f) + 1f;
 
-            float inElastic(float t) => Mathf.Sin(13f * (Mathf.PI * 0.5f) * t) * Mathf.Pow(2f, 10f * (t - 1f));
+            float InElastic(float t) => Godot.Mathf.Sin(13f * (Godot.Mathf.Pi * 0.5f) * t) * Godot.Mathf.Pow(2f, 10f * (t - 1f));
 
-            float outElastic(float t) => Mathf.Sin(-13f * (Mathf.PI * 0.5f) * (t + 1)) * Mathf.Pow(2f, -10f * t) + 1f;
+            float OutElastic(float t) => Godot.Mathf.Sin(-13f * (Godot.Mathf.Pi * 0.5f) * (t + 1)) * Godot.Mathf.Pow(2f, -10f * t) + 1f;
 
-            float inOutElastic(float t) =>
+            float InOutElastic(float t) =>
                 t < 0.5f
-                    ? 0.5f * Mathf.Sin(13f * (Mathf.PI * 0.5f) * (2f * t)) * Mathf.Pow(2f, 10f * ((2f * t) - 1f))
-                    : 0.5f * (Mathf.Sin(-13f * (Mathf.PI * 0.5f) * ((2f * t - 1f) + 1f)) * Mathf.Pow(2f, -10f * (2f * t - 1f)) + 2f);
+                    ? 0.5f * Godot.Mathf.Sin(13f * (Godot.Mathf.Pi * 0.5f) * (2f * t)) * Godot.Mathf.Pow(2f, 10f * ((2f * t) - 1f))
+                    : 0.5f * (Godot.Mathf.Sin(-13f * (Godot.Mathf.Pi * 0.5f) * ((2f * t - 1f) + 1f)) * Godot.Mathf.Pow(2f, -10f * (2f * t - 1f)) + 2f);
 
-            float inExpo(float t) => Mathf.Approximately(0.0f, t) ? t : Mathf.Pow(2f, 10f * (t - 1f));
+            float InExpo(float t) => Godot.Mathf.IsEqualApprox(0.0f, t) ? t : Godot.Mathf.Pow(2f, 10f * (t - 1f));
 
-            float outExpo(float t) => Mathf.Approximately(1.0f, t) ? t : 1f - Mathf.Pow(2f, -10f * t);
+            float OutExpo(float t) => Godot.Mathf.IsEqualApprox(1.0f, t) ? t : 1f - Godot.Mathf.Pow(2f, -10f * t);
 
-            float inOutExpo(float v) =>
-                Mathf.Approximately(0.0f, v) || Mathf.Approximately(1.0f, v)
+            float InOutExpo(float v) =>
+                Godot.Mathf.IsEqualApprox(0.0f, v) || Godot.Mathf.IsEqualApprox(1.0f, v)
                     ? v
                     : v < 0.5f
-                        ?  0.5f * Mathf.Pow(2f, (20f * v) - 10f)
-                        : -0.5f * Mathf.Pow(2f, (-20f * v) + 10f) + 1f;
+                        ?  0.5f * Godot.Mathf.Pow(2f, (20f * v) - 10f)
+                        : -0.5f * Godot.Mathf.Pow(2f, (-20f * v) + 10f) + 1f;
 
-            float inQuad(float t) => t * t;
+            float InQuad(float t) => t * t;
 
-            float outQuad(float t) => -t * (t - 2f);
+            float OutQuad(float t) => -t * (t - 2f);
 
-            float inOutQuad(float t) =>
+            float InOutQuad(float t) =>
                 t < 0.5f
                     ?  2f * t * t
                     : -2f * t * t + 4f * t - 1f;
 
-            float inQuart(float t) => t * t * t * t;
+            float InQuart(float t) => t * t * t * t;
 
-            float outQuart(float t)
+            float OutQuart(float t)
             {
                 var u = t - 1f;
                 return u * u * u * (1f - t) + 1f;
             }
 
-            float inOutQuart(float t) =>
+            float InOutQuart(float t) =>
                 t < 0.5f
-                    ? 8f * inQuart(t)
-                    : -8f * inQuart(t - 1f) + 1f;
+                    ? 8f * InQuart(t)
+                    : -8f * InQuart(t - 1f) + 1f;
 
-            float inQuint(float t) => t * t * t * t * t;
+            float InQuint(float t) => t * t * t * t * t;
 
-            float outQuint(float t) => inQuint(t - 1f) + 1f;
+            float OutQuint(float t) => InQuint(t - 1f) + 1f;
 
-            float inOutQuint(float t) =>
+            float InOutQuint(float t) =>
                 t < 0.5f
-                    ? 16f * inQuint(t)
-                    : 0.5f * inQuint(2f * t - 2f) + 1f;
+                    ? 16f * InQuint(t)
+                    : 0.5f * InQuint(2f * t - 2f) + 1f;
 
-            float inSine(float t) => Mathf.Sin((t - 1f) * (Mathf.PI * 0.5f)) + 1f;
+            float InSine(float t) => Godot.Mathf.Sin((t - 1f) * (Godot.Mathf.Pi * 0.5f)) + 1f;
 
-            float outSine(float t) => Mathf.Sin(t * (Mathf.PI * 0.5f));
+            float OutSine(float t) => Godot.Mathf.Sin(t * (Godot.Mathf.Pi * 0.5f));
 
-            float inOutSine(float t) => 0.5f * (1f - Mathf.Cos(t * Mathf.PI));
+            float InOutSine(float t) => 0.5f * (1f - Godot.Mathf.Cos(t * Godot.Mathf.Pi));
         }
     }
 }
